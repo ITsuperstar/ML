@@ -22,12 +22,12 @@ class HtmlDownloader(object):
         # 自动识别网页的编码格式，然后转换成utf-8格式
         html = response.read()
         mychar = chardet.detect(html)
-        print(mychar)
+        #print(mychar)
         bianma = mychar['encoding']
         if bianma == 'utf-8' or bianma == 'UTF-8':
             html = html.decode('utf-8', 'ignore').encode('utf-8')
         else:
             html = html.decode('gb2312', 'ignore').encode('utf-8')
-        print(chardet.detect(html))
+        #print(chardet.detect(html))
 
         return html
