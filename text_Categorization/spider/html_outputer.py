@@ -8,6 +8,9 @@ class HtmlOutputer(object):
         if data is None:
             return
         self.datas.append(data)
+        fout = open('output.txt', 'a', encoding='utf-8')
+        fout.write(data['summary'])
+        fout.close()
 
     def output_html(self):
         fout = open('output.html', 'w', encoding='utf-8')

@@ -36,13 +36,14 @@ class HtmlParser(object):
         print(res_data['title'])
 
         # <div class="lemma-summary" label-module="lemmaSummary">
-        summary_node = soup.find('div', class_='left_zw')
+        summary_node = soup.find('div', class_='left_zw').find_all('p')
         if summary_node is None:
             return
 
-        temp=summary_node.get_text()
+        temp=''
+        for node in summary_node:
+            temp += node.get_text()
         temp = re.sub("[A-Za-z0-9\[\`\~\!\@\#\$\^\&\*\(\)\=\|\{\}\'\:\;\'\,\[\]\.\<\>\/\?\~\！\@\#\\\&\*\%]", "", temp)
-        temp = temp[:-50]  #???
 
         temp=temp.replace(' ', '')
         temp = temp.replace('\n', '')
